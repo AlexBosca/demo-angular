@@ -40,12 +40,9 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist/demo-angular'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy to gh pages
+        run: |
+          npx angular-cli-ghpages --dir=dist/demo-angular
+        env:
+          CI: true
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
