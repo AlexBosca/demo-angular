@@ -10,12 +10,16 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -27,9 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Angular app
+      - name: Build Angular
         run: |
-          npm run build:gh-pages
+          npm run build -- \
+          --configuration production \
+          --base-href /demo-angular/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -39,5 +45,5 @@ jobs:
         with:
           path: dist/demo-angular
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: actions/deploy-pages@v4
