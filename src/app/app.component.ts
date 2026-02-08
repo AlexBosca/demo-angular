@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { environment } from '../environments/environment.prod';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get('https://demo-iwmn.onrender.com/demo').subscribe((data) => {
+    return this.http.get(`${environment.apiUrl}/demo`).subscribe((data) => {
       console.log(data);
     });
   }
@@ -22,7 +23,7 @@ export class AppComponent {
   createUser() {
     const user = { "id": 100, "name": 'Another User' };
 
-    return this.http.post('https://demo-iwmn.onrender.com/demo', user).subscribe((data) => {
+    return this.http.post(`${environment.apiUrl}/demo`, user).subscribe((data) => {
       console.log(data);
     });
   }

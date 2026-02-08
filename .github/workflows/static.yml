@@ -28,6 +28,11 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - name: Inject API URL
+        run: |
+          sed -i "s|__API_URL__|${{ secrets.API_URL }}|g" src/environments/environment.prod.ts
+
+
       - name: Install dependencies
         run: npm ci
 
