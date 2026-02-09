@@ -21,7 +21,7 @@ export class AppComponent {
   }
 
   createUser() {
-    const user = { "id": 100, "name": 'Another User' };
+    const user = { "name": 'Another User' };
 
     return this.http.post(`${environment.apiUrl}/demo`, user).subscribe((data) => {
       console.log(data);
