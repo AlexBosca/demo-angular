@@ -15,11 +15,7 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get(`${environment.apiUrl}/demo`, {
-      headers: {
-        'ngrok-skip-browser-warning': 'true'
-      }
-    }).subscribe((data) => {
+    return this.http.get(`${environment.apiUrl}/demo`).subscribe((data) => {
       console.log(data);
     });
   }
@@ -27,11 +23,7 @@ export class AppComponent {
   createUser() {
     const user = { "id": 100, "name": 'Another User' };
 
-    return this.http.post(`${environment.apiUrl}/demo`, user, {
-      headers: {
-        'ngrok-skip-browser-warning': 'true'
-      }
-    }).subscribe((data) => {
+    return this.http.post(`${environment.apiUrl}/demo`, user).subscribe((data) => {
       console.log(data);
     });
   }
