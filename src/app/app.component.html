@@ -324,7 +324,15 @@
   </div>
 
   <button (click)="getUsers()">Get Users</button>
-  <button (click)="createUser()">Create User</button>
+
+  <div *ngIf="users && users.length > 0">
+    <h2>Users:</h2>
+    <ul>
+      <li *ngFor="let user of users">
+        {{ user.name }}
+      </li>
+    </ul>
+  </div>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
